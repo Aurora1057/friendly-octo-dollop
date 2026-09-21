@@ -12,6 +12,21 @@
   --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #22d3ee 100%);
   --radius: 20px;
   --shadow: 0 20px 40px rgba(0,0,0,0.35);
+  --nav-bg: rgba(11,13,18,0.85);
+  --float-bg: rgba(23,27,37,.9);
+}
+
+html[data-theme="light"] {
+  --bg: #f6f7fb;
+  --bg-light: #eef0f6;
+  --card: #ffffff;
+  --card-hover: #f0f2f9;
+  --text: #1a1d27;
+  --text-dim: #5b6275;
+  --border: rgba(0,0,0,0.10);
+  --shadow: 0 20px 40px rgba(0,0,0,0.08);
+  --nav-bg: rgba(246,247,251,0.92);
+  --float-bg: rgba(255,255,255,.9);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,6 +39,7 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background .3s ease, color .3s ease;
 }
 
 .container { width: min(1120px, 90%); margin: 0 auto; }
@@ -38,7 +54,7 @@ img { max-width: 100%; display: block; }
   background: transparent;
 }
 .nav.scrolled {
-  background: rgba(11,13,18,0.85);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -56,6 +72,14 @@ img { max-width: 100%; display: block; }
 
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
 .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+.nav-actions { display: flex; align-items: center; gap: 18px; }
+.theme-toggle {
+  width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+  background: transparent; border: 1px solid var(--border); border-radius: 50%; color: var(--text-dim);
+  font-size: 1.05rem; cursor: pointer; transition: all .3s;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--primary); background: rgba(99,102,241,.1); }
 
 /* ===== Hero ===== */
 .hero {
@@ -104,7 +128,7 @@ img { max-width: 100%; display: block; }
 .avatar-glow { position: absolute; inset: 0; background: linear-gradient(to top, rgba(99,102,241,.25), transparent 60%); }
 
 .floating-card {
-  position: absolute; background: rgba(23,27,37,.9); backdrop-filter: blur(8px);
+  position: absolute; background: var(--float-bg); backdrop-filter: blur(8px);
   border: 1px solid var(--border); padding: 12px 16px; border-radius: 14px; font-size: .88rem;
   box-shadow: var(--shadow); animation: float 4s ease-in-out infinite; display: flex; align-items: center; gap: 8px;
 }

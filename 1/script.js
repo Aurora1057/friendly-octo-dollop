@@ -77,6 +77,21 @@ document.getElementById('avatarImg').src =
 document.getElementById('skillImg').src =
   'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20developer%20workspace%20with%20code%20on%20screens%20colorful%20gradient%20lighting%20aesthetic%20setup&image_size=landscape_16_9';
 
+// ===== 主题切换（浅色/深色）=====
+const themeToggle = document.getElementById('themeToggle');
+const THEME_KEY = 'portfolio-theme';
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute('data-theme', theme);
+  themeToggle.innerHTML = theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+  localStorage.setItem(THEME_KEY, theme);
+};
+// 首次加载时读取用户上次的选择，默认深色
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+themeToggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
 // ===== 导航滚动效果 =====
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
